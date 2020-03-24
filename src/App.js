@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoItem from './todoItem'
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class App extends React.Component {
     this.state = {
       isClicked: false,
       text: "",
-      todos: []
+      todos: [],
     }
   }
 
@@ -46,12 +47,11 @@ class App extends React.Component {
         <button onClick={this.addTodoItem}>{this.state.isClicked ? 'On' : 'Off'}</button>
         <div>
         {(this.state.todos.map((todo, index) => {
-          return <div key={index}>
-            <span>
-            {todo}
-              </span>
-              <button onClick={this.deleteTodoItem.bind(this, index)}>x</button>
-          </div>
+          return <TodoItem 
+                  key={index} 
+                  todoText={todo}
+                  deleteTodoItem={this.deleteTodoItem.bind(this, index)}
+                  />
         }))}
       </div>
       </header>
